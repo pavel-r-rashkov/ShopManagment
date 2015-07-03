@@ -1,8 +1,9 @@
 ﻿<Application x:Class="ShopManagment.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:shopManagment="clr-namespace:ShopManagment"
+             StartupUri="Views/Product/CreateProduct.xaml">
     <Application.Resources>
-         
+        <shopManagment:ViewModelLocator x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>

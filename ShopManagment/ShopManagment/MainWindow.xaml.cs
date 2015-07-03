@@ -23,6 +23,7 @@ namespace ShopManagment
         public MainWindow()
         {
             InitializeComponent();
+            textBlock.Text = "test text";
         }
     }
 }
