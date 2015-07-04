@@ -12,6 +12,7 @@ namespace ShopManagment.Data
         public Product()
         {
             this.Sales = new HashSet<Sale>();
+            this.Quantity = 0;
         }
 
         public int ProductId { get; set; }
