@@ -19,6 +19,7 @@ namespace ShopManagment.ViewModels.ProductViewModels
         private IShopData shopData;
         private Product product;
         private ICommand createProductCommand;
+        private string message;
 
         public CreateProductViewModel(IShopData shopData)
         {
@@ -26,7 +27,7 @@ namespace ShopManagment.ViewModels.ProductViewModels
             this.product = new Product();
         }
 
-        public string Name 
+        public string ProductName 
         {
             get
             {
@@ -34,12 +35,12 @@ namespace ShopManagment.ViewModels.ProductViewModels
             }
             set
             {
-                if (this.product.Name.Equals(value))
+                if (this.product.Name != null && this.product.Name.Equals(value))
                 {
                     return;
                 }
                 this.product.Name = value;
-                this.OnPropertyChanged("Name");
+                this.OnPropertyChanged("ProductName");
             } 
         }
 
@@ -73,7 +74,21 @@ namespace ShopManagment.ViewModels.ProductViewModels
             }
         }
 
-        public string Message { get; set; }
+        public string Message {
+            get
+            {
+                return this.message;
+            }
+            set
+            {
+                if (this.message != null && this.message.Equals(value))
+                {
+                    return;
+                }
+                this.message = value;
+                this.OnPropertyChanged("Message");
+            }
+        }
 
         public string Error
         {
@@ -84,15 +99,20 @@ namespace ShopManagment.ViewModels.ProductViewModels
         {
             get
             {
+                string error = null;
                 switch (propertyName)
                 {
                     case "Price":
-                        return ValidatePrice(this.Price);
-                    case "Name":
-                        return ValidateProductName(this.Name);
+                        error = ValidatePrice(this.Price);
+                        break;
+                    case "ProductName":
+                        error = ValidateProductName(this.ProductName);
+                        break;
                     default:
                         throw new ArgumentException("Invalid property name");
                 }
+                
+                return error;
             }
         }
 
@@ -100,9 +120,13 @@ namespace ShopManagment.ViewModels.ProductViewModels
         {
             try
             {
-                this.shopData.ProductRepository.Add(this.product);
-                this.shopData.Save();
-                this.Message = "Product creation successful";
+                if (this.IsValid())
+                {
+                    this.product.ProductCategoryId = 1;
+                    this.shopData.ProductRepository.Add(this.product);
+                    this.shopData.Save();
+                    this.Message = "Product creation successful";
+                }
             }
             catch
             {
@@ -112,7 +136,7 @@ namespace ShopManagment.ViewModels.ProductViewModels
 
         private bool IsValid()
         {
-            var validName = ValidateProductName(this.Name) == null;
+            var validName = ValidateProductName(this.ProductName) == null;
             var validPrice = ValidatePrice(this.Price) == null;
             return validName && validPrice;
         }
@@ -120,7 +144,12 @@ namespace ShopManagment.ViewModels.ProductViewModels
         private string ValidateProductName(string name)
         {
             string error = null;
-            if (name.Length < 3)
+            if (String.IsNullOrEmpty(name) ||
+                name.Trim() == String.Empty)
+            {
+                error = "Product name is missing";
+            }
+            else if (name.Length < 3)
             {
                 error = "Name is too short";
             }

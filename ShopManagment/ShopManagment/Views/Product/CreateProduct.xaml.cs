@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Ninject;
+using ShopManagment.Data;
+using ShopManagment.DataAccess;
 using ShopManagment.NinjectModules;
 using ShopManagment.ViewModels.ProductViewModels;
 
@@ -26,8 +28,5 @@ namespace ShopManagment.Views.Product
         {
             InitializeComponent();
         }
-
-
-
     }
 }

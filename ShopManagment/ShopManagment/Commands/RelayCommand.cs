@@ -27,11 +27,15 @@ namespace ShopManagment.Commands
             return this.canExecute();
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public void Execute(object parameter)
         {
             this.execute();
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }
