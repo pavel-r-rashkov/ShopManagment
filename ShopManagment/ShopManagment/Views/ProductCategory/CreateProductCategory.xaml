@@ -1,0 +1,12 @@
+﻿<Window x:Class="ShopManagment.Views.ProductCategory.CreateProductCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateProductCategory" Height="300" Width="300"
+        >
+    <StackPanel>
+        <TextBox Name="nameTextBox" Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="{Binding ElementName=nameTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        <Button Command="{Binding CreateProductCategoryCommand}">Add</Button>
+        <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</Window>
