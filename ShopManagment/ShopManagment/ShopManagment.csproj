@@ -70,17 +70,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="AutoMapperProfiles\DeliveryMapProfile.cs" />
     <Compile Include="AutoMapperProfiles\ProductCategoryMapProfile.cs" />
+    <Compile Include="AutoMapperProfiles\ProductDeliveryMapProfile.cs" />
     <Compile Include="AutoMapperProfiles\ProductMapProfile.cs" />
+    <Compile Include="Commands\ParameterRelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModels\DeliveryViewModels\CreateDeliveryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\CreateProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\EditProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\ProductCategoryPreviewViewModel.cs" />
+    <Compile Include="ViewModels\ProductDeliveryViewModels\CreateProductDeliveryViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModels\ProductPreviewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Delivery\CreateDelivery.xaml.cs">
+      <DependentUpon>CreateDelivery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductCategory\CreateProductCategory.xaml.cs">
       <DependentUpon>CreateProductCategory.xaml</DependentUpon>
     </Compile>
@@ -102,6 +111,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Delivery\CreateDelivery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProductCategory\CreateProductCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

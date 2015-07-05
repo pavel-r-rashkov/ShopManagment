@@ -1,0 +1,30 @@
+﻿<Window x:Class="ShopManagment.Views.Delivery.CreateDelivery"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateDelivery" Height="300" Width="300">
+    <StackPanel>
+        <TextBox Name="deliverySourceBox" Text="{Binding DeliverySource, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="{Binding ElementName=deliverySourceBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        <TextBox Name="descriptionBox" Text="{Binding Description, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="{Binding ElementName=descriptionBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        <ComboBox ItemsSource="{Binding Products}" DisplayMemberPath="Name"
+                  SelectedValue="{Binding ProductDelivery.SelectedProduct}" SelectedIndex="0" />
+
+        <TextBox Name="quantityBox" Text="{Binding ProductDelivery.DeliveryQuantity, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="{Binding ElementName=quantityBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        
+        <Button Command="{Binding AddProductCommand}">Add product</Button>
+        <ListBox Name="deliveryProducts" ItemsSource="{Binding ProductDeliveries}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding DeliveryQuantity}" />
+                        <Label Content="{Binding SelectedProduct.Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Command="{Binding RemoveProductCommand}" CommandParameter ="{Binding ElementName=deliveryProducts}">Remove product</Button>
+        <Button Command="{Binding AddDeliveryCommand}">Submit delivery</Button>
+    </StackPanel>
+</Window>

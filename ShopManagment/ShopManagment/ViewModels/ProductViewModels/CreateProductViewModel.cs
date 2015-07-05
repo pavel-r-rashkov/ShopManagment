@@ -185,10 +185,10 @@ namespace ShopManagment.ViewModels.ProductViewModels
             return error;
         }
 
-        private string ValidatePrice(decimal price)
+        private string ValidatePrice(decimal priceValue)
         {
             string error = null;
-            if (price < 0)
+            if (priceValue < 0)
             {
                 error = "Price cannot be negative";
             }

@@ -5,20 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ShopManagment.Data;
-using ShopManagment.ViewModels.ProductViewModels;
+using ShopManagment.ViewModels.DeliveryViewModels;
+using ShopManagment.ViewModels.ProductDeliveryViewModels;
 
 namespace ShopManagment.AutoMapperProfiles
 {
-    public class ProductMapProfile : Profile
+    public class DeliveryMapProfile : Profile
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<CreateProductViewModel, Product>()
-                .ForMember(dest => dest.ProductCategoryId,
-                    opts => opts.MapFrom(
-                        src => src.SelectedCategoryId));
-
-            Mapper.CreateMap<Product, ProductPreviewViewModel>();
+            Mapper.CreateMap<CreateDeliveryViewModel, Delivery>()
+                .AfterMap((src, dest) => dest.DeliveryDate = DateTime.Now);
         }
 
         public override string ProfileName
