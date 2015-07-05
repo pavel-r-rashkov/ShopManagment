@@ -71,12 +71,14 @@
     </ApplicationDefinition>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="AutoMapperProfiles\ProductCategoryMapProfile.cs" />
+    <Compile Include="AutoMapperProfiles\ProductMapProfile.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\CreateProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\EditProductCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryViewModels\ProductCategoryPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ProductCategory\CreateProductCategory.xaml.cs">

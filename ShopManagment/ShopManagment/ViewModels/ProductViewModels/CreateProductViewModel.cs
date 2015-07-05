@@ -6,41 +6,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using AutoMapper;
 using ShopManagment.Commands;
 using ShopManagment.Data;
 using ShopManagment.DataAccess;
 using ShopManagment.DataAccess.Interfaces;
+using ShopManagment.ViewModels.ProductCategoryViewModels;
 
 namespace ShopManagment.ViewModels.ProductViewModels
 {
     public class CreateProductViewModel : ViewModelBase, IDataErrorInfo
     {
         private IShopData shopData;
-        private Product product;
         private ICommand createProductCommand;
+        private string name;
+        private decimal price;
         private string message;
+        //private int selectedCategoryId;
 
         public CreateProductViewModel(IShopData shopData)
         {
             this.shopData = shopData;
-            this.product = new Product();
+            this.PopulateProductCategories();
         }
 
-        public string ProductName 
+        public IEnumerable<ProductCategoryPreviewViewModel> Categories { get; set; }
+
+        public int SelectedCategoryId { get; set; }
+        //public int SelectedCategoryId
+        //{
+        //    get
+        //    {
+        //        return this.selectedCategoryId;
+        //    }
+        //    set
+        //    {
+        //        if (this.selectedCategoryId == value)
+        //        {
+        //            return;
+        //        }
+        //        this.selectedCategoryId = value;
+        //        this.OnPropertyChanged("");
+        //    }
+        //}
+
+        public string Name 
         {
             get
             {
-                return this.product.Name;
+                return this.name;
             }
             set
             {
-                if (this.product.Name != null && this.product.Name.Equals(value))
+                if (this.name != null && this.name.Equals(value))
                 {
                     return;
                 }
-                this.product.Name = value;
-                this.OnPropertyChanged("ProductName");
+                this.name = value;
+                this.OnPropertyChanged("Name");
             } 
         }
 
@@ -48,15 +73,15 @@ namespace ShopManagment.ViewModels.ProductViewModels
         {
             get
             {
-                return this.product.Price;
+                return this.price;
             }
             set
             {
-                if (this.product.Price.Equals(value))
+                if (this.price.Equals(value))
                 {
                     return;
                 }
-                this.product.Price = value;
+                this.price = value;
                 this.OnPropertyChanged("Price");
             }
         }
@@ -105,8 +130,8 @@ namespace ShopManagment.ViewModels.ProductViewModels
                     case "Price":
                         error = ValidatePrice(this.Price);
                         break;
-                    case "ProductName":
-                        error = ValidateProductName(this.ProductName);
+                    case "Name":
+                        error = ValidateProductName(this.Name);
                         break;
                     default:
                         throw new ArgumentException("Invalid property name");
@@ -121,9 +146,9 @@ namespace ShopManagment.ViewModels.ProductViewModels
             try
             {
                 if (this.IsValid())
-                {
-                    this.product.ProductCategoryId = 1;
-                    this.shopData.ProductRepository.Add(this.product);
+                {  
+                    var product = Mapper.Map<Product>(this);
+                    this.shopData.ProductRepository.Add(product);
                     this.shopData.Save();
                     this.Message = "Product creation successful";
                 }
@@ -136,7 +161,7 @@ namespace ShopManagment.ViewModels.ProductViewModels
 
         private bool IsValid()
         {
-            var validName = ValidateProductName(this.ProductName) == null;
+            var validName = ValidateProductName(this.Name) == null;
             var validPrice = ValidatePrice(this.Price) == null;
             return validName && validPrice;
         }
@@ -168,6 +193,12 @@ namespace ShopManagment.ViewModels.ProductViewModels
                 error = "Price cannot be negative";
             }
             return error;
-        }      
+        }
+
+        private void PopulateProductCategories()
+        {
+            var categories = this.shopData.ProductCategoryRepository.Get();
+            this.Categories = Mapper.Map<IEnumerable<ProductCategoryPreviewViewModel>>(categories);
+        }
     }
 }

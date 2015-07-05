@@ -26,6 +26,7 @@ namespace ShopManagment
             {
                 cfg.ConstructServicesUsing(t => kernel.Get(t));
                 cfg.AddProfile(new ProductCategoryMapProfile(ObjectFactory.Get<IShopData>()));
+                cfg.AddProfile(new ProductMapProfile());
             });
         }
     }

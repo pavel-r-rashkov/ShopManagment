@@ -26,6 +26,8 @@ namespace ShopManagment.AutoMapperProfiles
             Mapper.CreateMap<ProductCategory, EditProductCategoryViewModel>().ConstructUsingServiceLocator();
 
             Mapper.CreateMap<EditProductCategoryViewModel, ProductCategory>();
+
+            Mapper.CreateMap<ProductCategory, ProductCategoryPreviewViewModel>();
         }
 
         public override string ProfileName

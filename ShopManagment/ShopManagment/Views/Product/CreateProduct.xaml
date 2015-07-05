@@ -8,10 +8,12 @@
     </Window.Resources>
    
     <StackPanel>
-        <TextBox Name="nameTextBox" Text="{Binding ProductName, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Name="nameTextBox" Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding ElementName=nameTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
         <TextBox Name="priceBox" Text="{Binding Price, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding ElementName=priceBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name"
+                  SelectedValuePath="ProductCategoryId" SelectedValue="{Binding SelectedCategoryId}" SelectedIndex="0" />
         <Button Command="{Binding CreateProductCommand}">Add</Button>
         <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
