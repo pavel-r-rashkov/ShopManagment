@@ -59,7 +59,9 @@ namespace ShopManagment.ViewModels.ProductDeliveryViewModels
         public bool IsValid()
         {
             bool quantityValid = this.ValidateQuantity(this.DeliveryQuantity) == null;
-            return quantityValid;
+            bool productValid = this.SelectedProduct != null;
+            return quantityValid &&
+                productValid;
         }
 
         private string ValidateQuantity(int quantityValue)

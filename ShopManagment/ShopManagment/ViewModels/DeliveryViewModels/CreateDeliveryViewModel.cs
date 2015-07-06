@@ -11,6 +11,7 @@ using AutoMapper;
 using ShopManagment.Commands;
 using ShopManagment.Data;
 using ShopManagment.DataAccess.Interfaces;
+using ShopManagment.ViewModels.ProductCategoryViewModels;
 using ShopManagment.ViewModels.ProductDeliveryViewModels;
 using ShopManagment.ViewModels.ProductViewModels;
 
@@ -25,21 +26,33 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
         private ICommand addProductCommand;
         private ICommand removeProductCommand;
         private CreateProductDeliveryViewModel productDelivery;
-     //   private ObservableCollection<CreateProductDeliveryViewModel> productDeliveries;
+        private IEnumerable<ProductPreviewViewModel> products;
 
         public CreateDeliveryViewModel(IShopData shopData)
         {
             this.shopData = shopData;
             this.ProductDelivery = new CreateProductDeliveryViewModel();
             this.ProductDeliveries = new ObservableCollection<CreateProductDeliveryViewModel>();
-            this.Products = Mapper.Map<IEnumerable<ProductPreviewViewModel>>(this.shopData.ProductRepository.Get());
+            this.Categories = Mapper.Map<IEnumerable<ProductCategoryPreviewViewModel>>(this.shopData.ProductCategoryRepository.Get());
         }
 
-        public IEnumerable<ProductPreviewViewModel> Products { get; set; }
-
+        public IEnumerable<ProductCategoryPreviewViewModel> Categories { get; set; }
+        
         public ObservableCollection<CreateProductDeliveryViewModel> ProductDeliveries { get; set; }
 
-        public CreateProductDeliveryViewModel ProductDelivery 
+        public IEnumerable<ProductPreviewViewModel> Products {
+            get
+            {
+                return this.products;
+            }
+            set
+            {
+                this.products = value;
+                this.OnPropertyChanged("Products");
+            }
+        }
+
+        public CreateProductDeliveryViewModel ProductDelivery
         {
             get
             {
@@ -159,6 +172,13 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
 
                 return error;
             }
+        }
+
+        public void ShowProductsFromCategory(int categoryId)
+        {
+            var productModels =
+                this.shopData.ProductRepository.Get(p => p.ProductCategoryId == categoryId);
+            this.Products = Mapper.Map<IEnumerable<ProductPreviewViewModel>>(productModels);
         }
 
         private string ValidateDeliverySource(string source)

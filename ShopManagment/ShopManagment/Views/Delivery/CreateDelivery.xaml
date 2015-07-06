@@ -7,12 +7,12 @@
         <TextBlock Text="{Binding ElementName=deliverySourceBox, Path=(Validation.Errors)[0].ErrorContent}" />
         <TextBox Name="descriptionBox" Text="{Binding Description, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding ElementName=descriptionBox, Path=(Validation.Errors)[0].ErrorContent}" />
+        <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name"
+                  SelectionChanged="OnCategoryChanged"/>
         <ComboBox ItemsSource="{Binding Products}" DisplayMemberPath="Name"
-                  SelectedValue="{Binding ProductDelivery.SelectedProduct}" SelectedIndex="0" />
-
+                  SelectedValue="{Binding ProductDelivery.SelectedProduct}" />
         <TextBox Name="quantityBox" Text="{Binding ProductDelivery.DeliveryQuantity, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding ElementName=quantityBox, Path=(Validation.Errors)[0].ErrorContent}" />
-        
         <Button Command="{Binding AddProductCommand}">Add product</Button>
         <ListBox Name="deliveryProducts" ItemsSource="{Binding ProductDeliveries}">
             <ListBox.ItemTemplate>

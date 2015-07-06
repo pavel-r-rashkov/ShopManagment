@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ShopManagment.ViewModels.DeliveryViewModels;
+using ShopManagment.ViewModels.ProductCategoryViewModels;
 
 namespace ShopManagment.Views.Delivery
 {
@@ -24,6 +25,15 @@ namespace ShopManagment.Views.Delivery
         {
             InitializeComponent();
             this.DataContext = ObjectFactory.Get<CreateDeliveryViewModel>();
+        }
+
+        private void OnCategoryChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
+            {
+                var selected = e.AddedItems[0] as ProductCategoryPreviewViewModel;
+                (this.DataContext as CreateDeliveryViewModel).ShowProductsFromCategory(selected.ProductCategoryId);
+            }
         }
     }
 }
