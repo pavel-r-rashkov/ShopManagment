@@ -18,6 +18,10 @@ namespace ShopManagment.AutoMapperProfiles
                     opts => opts.MapFrom(
                         src => src.SelectedProduct.ProductId))
                 .AfterMap((src, dest) => dest.SaleDate = DateTime.Now);
+
+            Mapper.CreateMap<Sale, SalePreviewViewModel>();
+
+            Mapper.CreateMap<Sale, SaleDetailsViewModel>();
         }
 
         public override string ProfileName

@@ -1,0 +1,14 @@
+﻿<Window x:Class="ShopManagment.Views.Sale.SaleDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SaleDetails" Height="300" Width="300">
+    <StackPanel>
+        <TextBlock Text="{Binding SaleId}" />
+        <TextBlock Text="{Binding SaleDate}" />
+        <TextBlock Text="{Binding QuantitySold}" />
+        <TextBlock Text="{Binding Product.Name}" />
+        <TextBlock Text="{Binding Product.Quantity}" />
+        <TextBlock Text="{Binding Product.Price}" />
+        <TextBlock Text="{Binding ProductCategory.Name}"/>
+    </StackPanel>
+</Window>

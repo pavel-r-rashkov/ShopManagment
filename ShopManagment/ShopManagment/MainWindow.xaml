@@ -11,6 +11,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Price}"/>
                                     <TextBlock Text="{Binding Quantity}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -67,6 +68,23 @@
                     <TextBlock Text="{Binding ElementName=quantityBox, Path=(Validation.Errors)[0].ErrorContent}" />
                     <Button Command="{Binding SellCommand}">Sell</Button>
                     <TextBlock Text="{Binding Message}" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Sales" DataContext="{Binding Tabs[3]}">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Sales}" SelectedValue="{Binding SelectedSale}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Product.Name}"/>
+                                    <TextBlock Text="{Binding SaleDate}"/>
+                                    <TextBlock Text="{Binding QuantitySold}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Command="{Binding ShowSaleDetailsCommand}">Show details</Button>
                 </StackPanel>
             </TabItem>
         </TabControl>
