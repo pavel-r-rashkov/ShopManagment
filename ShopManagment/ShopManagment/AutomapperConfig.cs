@@ -29,6 +29,7 @@ namespace ShopManagment
                 cfg.AddProfile(new ProductMapProfile());
                 cfg.AddProfile(new DeliveryMapProfile());
                 cfg.AddProfile(new ProductDeliveryMapProfile());
+                cfg.AddProfile(new SaleMapProfile());
             });
         }
     }

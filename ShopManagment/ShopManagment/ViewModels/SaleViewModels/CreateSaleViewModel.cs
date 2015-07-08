@@ -148,8 +148,11 @@ namespace ShopManagment.ViewModels.SaleViewModels
                         this.Message = "Product out of stock";
                         return;
                     }
+
                     var sale = Mapper.Map<Sale>(this);
                     this.shopData.SaleRepository.Add(sale);
+                    sale.Product.Quantity -= this.QuantitySold;
+                    
                     this.shopData.Save();
                     this.Message = "Sale created";
                 }

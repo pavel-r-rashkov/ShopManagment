@@ -218,11 +218,16 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
                 {
                     var delivery = Mapper.Map<Delivery>(this);
                     this.shopData.DeliveryRepository.Add(delivery);
+                    foreach (var productDelivery in delivery.ProductDeliveries)
+                    {
+                        productDelivery.Product.Quantity += productDelivery.DeliveryQuantity;
+                    }
+
                     this.shopData.Save();
                 }
                 catch
                 {
-                    
+
                 }
             }
         }

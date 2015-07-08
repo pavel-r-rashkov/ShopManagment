@@ -74,6 +74,7 @@
     <Compile Include="AutoMapperProfiles\ProductCategoryMapProfile.cs" />
     <Compile Include="AutoMapperProfiles\ProductDeliveryMapProfile.cs" />
     <Compile Include="AutoMapperProfiles\ProductMapProfile.cs" />
+    <Compile Include="AutoMapperProfiles\SaleMapProfile.cs" />
     <Compile Include="Commands\ParameterRelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
