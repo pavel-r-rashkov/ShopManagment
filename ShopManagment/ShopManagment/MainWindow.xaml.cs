@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ShopManagment.ViewModels;
 
 namespace ShopManagment
 {
@@ -23,7 +24,8 @@ namespace ShopManagment
         public MainWindow()
         {
             InitializeComponent();
-            textBlock.Text = "test text";
+            var viewModel = ObjectFactory.Get<MainViewModel>();
+            this.DataContext = viewModel;
         }
     }
 }

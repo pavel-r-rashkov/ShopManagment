@@ -18,6 +18,7 @@ namespace ShopManagment.ViewModels.ProductViewModels
         private IShopData shopData;
         private ICommand editProductCommand;
         private ICommand showProductDetailsCommand;
+        private ICommand showProductCreateWindowCommand;
 
         public ProductsListViewModel(IShopData shopData)
         {
@@ -59,6 +60,20 @@ namespace ShopManagment.ViewModels.ProductViewModels
             }
         }
 
+        public ICommand ShowProductCreateWindowCommand
+        {
+            get
+            {
+                if (this.showProductCreateWindowCommand == null)
+                {
+                    this.showProductCreateWindowCommand = new RelayCommand(
+                            this.ShowProductCreateWindow
+                        );
+                }
+                return this.showProductCreateWindowCommand;
+            }
+        }
+
         private bool ProductIsSelected()
         {
             return this.SelectedProduct != null;
@@ -74,6 +89,12 @@ namespace ShopManagment.ViewModels.ProductViewModels
         {
             var productWindow = new ProductDetails(this.SelectedProduct.ProductId);
             productWindow.Show();
+        }
+
+        private void ShowProductCreateWindow()
+        {
+            var createProduct = new CreateProduct();
+            createProduct.Show();
         }
     }
 }

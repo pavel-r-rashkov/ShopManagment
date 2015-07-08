@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
     {
         private IShopData shopData;
         private ICommand showDeliveryDetailsCommand;
+        private ICommand showCreateDeliveryWindowCommand;
 
         public DeliveriesListViewModel(IShopData shopData)
         {
@@ -42,6 +44,20 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
             }
         }
 
+        public ICommand ShowCreateDeliveryWindowCommand
+        {
+            get
+            {
+                if (this.showCreateDeliveryWindowCommand == null)
+                {
+                    this.showCreateDeliveryWindowCommand = new RelayCommand(
+                            this.ShowCreateDeliveryWindow
+                        );
+                }
+                return this.showCreateDeliveryWindowCommand;
+            }
+        }
+
         private bool DeliveryIsSelected()
         {
             return this.SelectedDelivery != null;
@@ -51,6 +67,12 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
         {
             var deliveryDetailsWindow = new DeliveryDetails(SelectedDelivery.DeliveryId);
             deliveryDetailsWindow.Show();
+        }
+
+        private void ShowCreateDeliveryWindow()
+        {
+            var createDeliveryWindow = new CreateDelivery();
+            createDeliveryWindow.Show();
         }
     }
 }

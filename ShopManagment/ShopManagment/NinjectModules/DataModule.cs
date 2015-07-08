@@ -16,7 +16,7 @@ namespace ShopManagment.NinjectModules
         public override void Load()
         {
             Bind<DbContext>().To<ShopManagmentContext>();
-            Bind<IShopData>().To<ShopData>();
+            Bind<IShopData>().To<ShopData>().InSingletonScope();
         }
     }
 }

@@ -1,8 +1,52 @@
 ﻿<Window x:Class="ShopManagment.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="450" Width="625">
     <Grid>
-        <TextBlock Name="textBlock"></TextBlock>
+        <TabControl>
+            <TabItem Header="Products" DataContext="{Binding Tabs[0]}">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Products}" SelectedValue="{Binding SelectedProduct}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Command="{Binding EditProductCommand}">
+                        Edit product
+                    </Button>
+                    <Button Command="{Binding ShowProductDetailsCommand}">
+                        Show product
+                    </Button>
+                    <Button Command="{Binding ShowProductCreateWindowCommand}">
+                        Create product
+                    </Button>
+                </StackPanel>
+            </TabItem>
+            
+            <TabItem Header="Deliveries" DataContext="{Binding Tabs[1]}">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Deliveries}" SelectedValue="{Binding SelectedDelivery}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding DeliverySource}"/>
+                                    <TextBlock Text="{Binding DeliveryDate}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Command="{Binding ShowDeliveryDetailsCommand}">
+                        Show delivery
+                    </Button>
+                    <Button Command="{Binding ShowCreateDeliveryWindowCommand}">
+                        Create delivery
+                    </Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -20,6 +20,10 @@ namespace ShopManagment.AutoMapperProfiles
 
             Mapper.CreateMap<Product, ProductPreviewViewModel>();
 
+            Mapper.CreateMap<Product, EditProductViewModel>();
+
+            Mapper.CreateMap<Product, ProductDetailsViewModel>();
+
             Mapper.CreateMap<EditProductViewModel, Product>()
                 .ForMember(dest => dest.ProductCategoryId,
                     opts => opts.MapFrom(

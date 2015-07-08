@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\DeliveryViewModels\DeliveriesListViewModel.cs" />
     <Compile Include="ViewModels\DeliveryViewModels\DeliveryDetailsViewModel.cs" />
     <Compile Include="ViewModels\DeliveryViewModels\DeliveryPreviewViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\CreateProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\EditProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\ProductCategoryPreviewViewModel.cs" />
