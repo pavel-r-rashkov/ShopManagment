@@ -27,6 +27,7 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
         private ICommand removeProductCommand;
         private CreateProductDeliveryViewModel productDelivery;
         private IEnumerable<ProductPreviewViewModel> products;
+        private ProductCategoryPreviewViewModel selectedCategory;
 
         public CreateDeliveryViewModel(IShopData shopData)
         {
@@ -34,13 +35,28 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
             this.ProductDelivery = new CreateProductDeliveryViewModel();
             this.ProductDeliveries = new ObservableCollection<CreateProductDeliveryViewModel>();
             this.Categories = Mapper.Map<IEnumerable<ProductCategoryPreviewViewModel>>(this.shopData.ProductCategoryRepository.Get());
+            this.PropertyChanged += this.ShowProductsFromCategory;
         }
 
         public IEnumerable<ProductCategoryPreviewViewModel> Categories { get; set; }
         
         public ObservableCollection<CreateProductDeliveryViewModel> ProductDeliveries { get; set; }
 
-        public IEnumerable<ProductPreviewViewModel> Products {
+        public ProductCategoryPreviewViewModel SelectedCategory
+        {
+            get
+            {
+                return this.selectedCategory;
+            }
+            set
+            {
+                this.selectedCategory = value;
+                OnPropertyChanged("SelectedCategory");
+            }
+        }
+
+        public IEnumerable<ProductPreviewViewModel> Products 
+        {
             get
             {
                 return this.products;
@@ -174,13 +190,6 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
             }
         }
 
-        public void ShowProductsFromCategory(int categoryId)
-        {
-            var productModels =
-                this.shopData.ProductRepository.Get(p => p.ProductCategoryId == categoryId);
-            this.Products = Mapper.Map<IEnumerable<ProductPreviewViewModel>>(productModels);
-        }
-
         private string ValidateDeliverySource(string source)
         {
             string error = null;
@@ -233,6 +242,16 @@ namespace ShopManagment.ViewModels.DeliveryViewModels
             if (productList.SelectedItem != null)
             {
                 this.ProductDeliveries.Remove(productList.SelectedItem as CreateProductDeliveryViewModel);
+            }
+        }
+
+        private void ShowProductsFromCategory(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName.Equals("SelectedCategory"))
+            {
+                var productModels = this.shopData.ProductRepository.Get(
+                    p => p.ProductCategoryId == this.SelectedCategory.ProductCategoryId);
+                this.Products = Mapper.Map<IEnumerable<ProductPreviewViewModel>>(productModels);
             }
         }
     }

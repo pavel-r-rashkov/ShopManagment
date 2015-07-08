@@ -8,7 +8,7 @@
         <TextBox Name="descriptionBox" Text="{Binding Description, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding ElementName=descriptionBox, Path=(Validation.Errors)[0].ErrorContent}" />
         <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name"
-                  SelectionChanged="OnCategoryChanged"/>
+                  SelectedValue="{Binding SelectedCategory}"/>
         <ComboBox ItemsSource="{Binding Products}" DisplayMemberPath="Name"
                   SelectedValue="{Binding ProductDelivery.SelectedProduct}" />
         <TextBox Name="quantityBox" Text="{Binding ProductDelivery.DeliveryQuantity, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
