@@ -89,6 +89,8 @@
     <Compile Include="ViewModels\ProductDeliveryViewModels\CreateProductDeliveryViewModel.cs" />
     <Compile Include="ViewModels\ProductDeliveryViewModels\ProductDeliveryPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModels\EditProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\ProductPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\ProductsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -106,6 +108,12 @@
     </Compile>
     <Compile Include="Views\Product\CreateProduct.xaml.cs">
       <DependentUpon>CreateProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Product\EditProduct.xaml.cs">
+      <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Product\ProductDetails.xaml.cs">
+      <DependentUpon>ProductDetails.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +144,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Product\CreateProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Product\EditProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Product\ProductDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

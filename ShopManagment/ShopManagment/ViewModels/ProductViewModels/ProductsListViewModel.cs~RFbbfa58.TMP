@@ -9,11 +9,10 @@ using System.Windows.Input;
 using ShopManagment.DataAccess.Interfaces;
 using AutoMapper;
 using ShopManagment.Commands;
-using ShopManagment.Views.Product;
 
 namespace ShopManagment.ViewModels.ProductViewModels
 {
-    public class ProductsListViewModel : ViewModelBase
+    public class ProductsListViewModel : ViewModelBase, IDataErrorInfo
     {
         private IShopData shopData;
         private ICommand editProductCommand;
@@ -66,14 +65,12 @@ namespace ShopManagment.ViewModels.ProductViewModels
 
         private void ShowEditProductWindow()
         {
-            var editProductWindow = new EditProduct(this.SelectedProduct.ProductId);
-            editProductWindow.Show();
+            
         }
 
         private void ShowProductDetailsWindow()
         {
-            var productWindow = new ProductDetails(this.SelectedProduct.ProductId);
-            productWindow.Show();
+            
         }
     }
 }

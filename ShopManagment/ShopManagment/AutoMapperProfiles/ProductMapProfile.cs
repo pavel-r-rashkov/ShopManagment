@@ -19,6 +19,11 @@ namespace ShopManagment.AutoMapperProfiles
                         src => src.SelectedCategoryId));
 
             Mapper.CreateMap<Product, ProductPreviewViewModel>();
+
+            Mapper.CreateMap<EditProductViewModel, Product>()
+                .ForMember(dest => dest.ProductCategoryId,
+                    opts => opts.MapFrom(
+                        src => src.SelectedCategoryId));
         }
 
         public override string ProfileName
