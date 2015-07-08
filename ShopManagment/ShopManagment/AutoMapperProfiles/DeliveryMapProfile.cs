@@ -16,6 +16,10 @@ namespace ShopManagment.AutoMapperProfiles
         {
             Mapper.CreateMap<CreateDeliveryViewModel, Delivery>()
                 .AfterMap((src, dest) => dest.DeliveryDate = DateTime.Now);
+
+            Mapper.CreateMap<Delivery, DeliveryPreviewViewModel>();
+
+            Mapper.CreateMap<Delivery, DeliveryDetailsViewModel>();
         }
 
         public override string ProfileName

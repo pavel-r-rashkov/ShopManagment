@@ -24,7 +24,6 @@ namespace ShopManagment.ViewModels.ProductViewModels
         private string name;
         private decimal price;
         private string message;
-        //private int selectedCategoryId;
 
         public CreateProductViewModel(IShopData shopData)
         {

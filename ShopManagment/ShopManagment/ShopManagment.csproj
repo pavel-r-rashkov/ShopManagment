@@ -80,15 +80,23 @@
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\DeliveryViewModels\CreateDeliveryViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryViewModels\DeliveriesListViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryViewModels\DeliveryDetailsViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryViewModels\DeliveryPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\CreateProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\EditProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModels\ProductCategoryPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductDeliveryViewModels\CreateProductDeliveryViewModel.cs" />
+    <Compile Include="ViewModels\ProductDeliveryViewModels\ProductDeliveryPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\ProductPreviewViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModels\ProductsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Delivery\CreateDelivery.xaml.cs">
       <DependentUpon>CreateDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Delivery\DeliveryDetails.xaml.cs">
+      <DependentUpon>DeliveryDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductCategory\CreateProductCategory.xaml.cs">
       <DependentUpon>CreateProductCategory.xaml</DependentUpon>
@@ -112,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Delivery\CreateDelivery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Delivery\DeliveryDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

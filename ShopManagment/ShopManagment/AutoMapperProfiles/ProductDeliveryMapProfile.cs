@@ -18,6 +18,8 @@ namespace ShopManagment.AutoMapperProfiles
                 .ForMember(dest => dest.ProductId,
                     opts => opts.MapFrom(
                         src => src.SelectedProduct.ProductId));
+
+            Mapper.CreateMap<ProductDelivery, ProductDeliveryPreviewViewModel>();
         }
 
         public override string ProfileName
