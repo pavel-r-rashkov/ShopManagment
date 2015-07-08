@@ -94,6 +94,7 @@
     <Compile Include="ViewModels\ProductViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\ProductPreviewViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels\ProductsListViewModel.cs" />
+    <Compile Include="ViewModels\SaleViewModels\CreateSaleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Delivery\CreateDelivery.xaml.cs">
       <DependentUpon>CreateDelivery.xaml</DependentUpon>

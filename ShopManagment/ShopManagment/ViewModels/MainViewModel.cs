@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ShopManagment.DataAccess.Interfaces;
 using ShopManagment.ViewModels.DeliveryViewModels;
 using ShopManagment.ViewModels.ProductViewModels;
+using ShopManagment.ViewModels.SaleViewModels;
 
 namespace ShopManagment.ViewModels
 {
@@ -19,7 +20,8 @@ namespace ShopManagment.ViewModels
             this.Tabs = new List<ViewModelBase>()
             {
                 new ProductsListViewModel(this.shopData),
-                new DeliveriesListViewModel(this.shopData)
+                new DeliveriesListViewModel(this.shopData),
+                new CreateSaleViewModel(this.shopData)
             };
         }
 

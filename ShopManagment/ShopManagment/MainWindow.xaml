@@ -11,6 +11,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Quantity}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -45,6 +46,27 @@
                     <Button Command="{Binding ShowCreateDeliveryWindowCommand}">
                         Create delivery
                     </Button>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Make sale" DataContext="{Binding Tabs[2]}">
+                <StackPanel>
+                    <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name"
+                      SelectedValue="{Binding SelectedCategory}"/>
+                    <ListBox ItemsSource="{Binding Products}" SelectedValue="{Binding SelectedProduct}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Quantity}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>    
+                    </ListBox>
+                    <TextBox Name="quantityBox" Text="{Binding QuantitySold, ValidatesOnDataErrors=True, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding ElementName=quantityBox, Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Button Command="{Binding SellCommand}">Sell</Button>
+                    <TextBlock Text="{Binding Message}" />
                 </StackPanel>
             </TabItem>
         </TabControl>
